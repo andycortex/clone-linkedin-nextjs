@@ -25,14 +25,14 @@ const spring = {
 
 export const Header = () => {
   const [mounted, setMounted] = useState(false);
-  const { setTheme, resolvedTheme, theme } = useTheme();
+  const { setTheme, resolvedTheme } = useTheme();
 
   useEffect(() => {
     setMounted(true);
   }, []);
   return (
     <header className="sticky top-0 z-40 bg-white dark:bg-[#1D2226] flex items-center justify-around py-1.5 px-3 focus-within:shadow-lg">
-      <div className="flex items-center space-x-2 w-full max-w-xs">
+      <div className="flex items-center space-x-2 w-full max-w-md">
         {mounted && (
           <>
             {resolvedTheme === "dark" ? (
@@ -56,7 +56,7 @@ export const Header = () => {
           />
         </div>
       </div>
-      <div className="flex items-center space-x-6">
+      <div className="flex items-center space-x-6 ">
         <HeaderLink Icon={HomeRoundedIcon} text="Home" feed active />
         <HeaderLink Icon={GroupIcon} text="My Network" feed />
         <HeaderLink Icon={BusinessCenterIcon} text="Jobs" feed hidden />
