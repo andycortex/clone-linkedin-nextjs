@@ -6,8 +6,15 @@ import { Header } from "../components/Header";
 import Feed from "../components/Feed";
 import Sidebar from "../components/Sidebar";
 import Widgets from "../components/Widgets";
+import Modal from "../components/Modal";
+
+import { AnimatePresence } from "framer-motion";
+import { useRecoilState } from "recoil";
+import { modalState, modalTypesState } from "../atoms/modalAtom";
 
 export default function Home() {
+  const [modalOpen, setModalOpen] = useRecoilState(modalState);
+  const [modalType, setModalType] = useRecoilState(modalTypesState)
   const router = useRouter();
   const { status } = useSession({
     required: true,
@@ -29,6 +36,11 @@ export default function Home() {
           <Feed/>
         </div>
         <Widgets/>
+        <AnimatePresence>
+          {modalOpen && (
+            <Modal handleClose={() => setModalOpen(false)} type={modalType} />
+          )}
+        </AnimatePresence>
       </main>
     </div>
   );
